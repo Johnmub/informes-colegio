@@ -1,0 +1,33 @@
+<nav class="top-menu">
+    <div class="container">
+
+        <div class="logo-menu">
+            <a href="/inicio"> <i class="fa fa-arrow-left"></i>
+                <h1>Araguaney</h1>
+            </a>
+        </div>   
+
+        <div class="user-options">
+
+            <a href="/inicio" class="notifi-button">
+                <span class="notifi-icon"><span class="cant-notificacion <%if(sesion.msg_notread > 0) {%> notifi-active<%}%>"><%= sesion.msg_notread%></span><i class="fa fa-bell <%if(sesion.msg_notread > 0) {%> notifi-active<%}%>"></i></span>
+                <strong class="notifi-title">Notificaciones</strong>
+            </a>
+
+            <div class="options-perfil">
+
+                <div class="thumb-user">
+                    <div class="user-picture" id="cliente-photo">
+                    </div>
+                </div>
+                <div class="options-deploy" id="menu-deploy">
+                    <a href="/perfil">Ver perfil</a>
+                    <a href="/salir" id="closet-option">Salir <i class="fa fa-arrow-circle-o-right"></i> </a>
+                </div> 
+
+            </div>
+
+        </div>
+
+    </div>
+</nav>

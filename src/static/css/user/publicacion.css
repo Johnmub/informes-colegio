@@ -1,0 +1,70 @@
+.publicacion
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 80%;
+    margin: 20px auto;
+    background: #a0a0a050;
+    border: 2px solid #383838;
+    cursor: default;
+}
+.publicacion .titulo { width: 100%; padding: 10px 10px; background-color: rgb(45, 182, 106); }
+.publicacion .titulo h2 { color: #ffffff; font-size: 22px; font-weight: bold; text-align: center; }
+
+.publicacion .imagen
+{
+    width: 60%;
+    max-width: 60%;
+    margin: 20px 0;
+}
+.publicacion .imagen img { border-radius: 2px; width: 100%; vertical-align: top; }
+
+.publicacion .cuerpo
+{
+    width: 100%;
+    padding: 40px 0;
+    background: #ffffff
+}
+
+.publicacion .cuerpo .contenido { width: 60%; margin: 0px auto; text-align: justify; font-family: Arial, Helvetica, sans-serif; font-size: 16px; }
+
+.publicacion .leyenda
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 8px 20px;
+    background-color: rgb(45, 182, 106);
+}
+.publicacion .leyenda span { font-size: 14px; font-weight: bold;}
+.publicacion .leyenda span .author { color: #ffffff; font-style: italic; font-weight: normal; font-size: 15px;}
+
+@media screen and ( max-width: 740px )
+{
+    .publicacion .imagen
+    {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+    .publicacion .imagen img {border-radius: 0px;}
+
+    .publicacion .titulo h2 {font-size: 20px; }
+}
+
+@media screen and ( max-width: 375px )
+{
+    .publicacion .cuerpo { padding: 20px 0; }
+    .publicacion .titulo h2 {font-size: 18px; }
+    .publicacion .cuerpo .parrafo {font-size: 14px; }
+}

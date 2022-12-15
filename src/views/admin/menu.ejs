@@ -1,0 +1,78 @@
+<div class="menu">
+  <a href="/panel/profile"><p><% if(sesion) {%><%= sesion.usuario %><%} else {%>Sesión de prueba<%}%></p></a>
+  <a href="/panel/profile"><img src="/img/logo.png"></a>
+  <div>
+    <h2>General</h2>
+    <nav class="general">
+      <a id="bt-publicaciones" href="/panel/publicaciones"><i class="fa fa-bullhorn fa-fw"></i>Publicaciones</a>
+      <a id="bt-representantes" href="/panel/representantes"><i class="fa fa-male fa-fw"></i>Representantes</a>
+      <a id="bt-alumnos" href="/panel/alumnos"><i class="fa fa-child fa-fw"></i>Alumnos</a>
+      <a id="bt-niveles" href="/panel/niveles"><i class="fa fa-language fa-fw"></i>Niveles</a>
+    </nav>
+  </div>
+  <div>
+    <h2>Mantenimiento</h2>
+    <nav>
+      <a id="bt-usuarios" href="/panel/usuarios"><i class="fa fa-user fa-fw"></i>Usuarios</a>
+      <a id="bt-respaldo" href="/panel/respaldo"><i class="fa fa-archive fa-fw"></i>Respaldo</a>
+    </nav>
+  </div>
+  <div class="separador">
+    <nav>
+      <a id="bt-ayuda" href="/pdf/Ayuda_admin.pdf" target="_blank"><i class="fa fa-info fa-fw"></i>Ayuda</a>
+      <a id="bt-salir" href="/salir"><i class="fa fa-power-off fa-fw"></i>Salir</a>
+    </nav>
+  </div>
+</div>
+
+<a id="bt-agregar" class="agregar" href="#" title="Agregar"><i class="fa fa-plus fa-lg"></i></a>
+
+<script type="text/javascript">
+  let boton = document.querySelector('nav a#bt-<%= modulo.id %>');
+  if(boton != null) boton.classList.add('activo');
+
+  let items = [
+    document.getElementById('bt-publicaciones'),
+    document.getElementById('bt-representantes'),
+    document.getElementById('bt-alumnos'),
+    document.getElementById('bt-niveles')
+  ];
+
+  btAgregar = {
+    elem: document.getElementById('bt-agregar'),
+    seleccionado: false,
+    mostrar: function(){
+      this.elem.style.visibility = 'visible';
+    },
+    ocultar: function(){
+      this.elem.style.visibility = 'hidden';
+      this.seleccionado = false;
+    },
+    actualizar: function(bt){
+      var x = bt.offsetParent.offsetLeft + bt.offsetWidth;
+      var y = bt.offsetTop  + document.documentElement.scrollTop;
+      this.elem.style.left = (x - 20) + 'px';
+      this.elem.style.top = y + 'px';
+      this.elem.setAttribute('href', bt.getAttribute('href') + '/agregar');
+    }
+  };
+
+  btAgregar.elem.addEventListener('mouseenter', function(){
+    btAgregar.mostrar();
+    btAgregar.seleccionado = true;
+  });
+  btAgregar.elem.addEventListener('mouseleave', function(){
+    btAgregar.ocultar();
+  });
+
+  items.forEach(function(a){
+    a.addEventListener('mouseenter', function(){
+      btAgregar.actualizar(a);
+      btAgregar.mostrar();
+    });
+    a.addEventListener('mouseleave', function(){
+      if(!btAgregar.seleccionado)
+        btAgregar.ocultar();
+    });
+  });
+</script>

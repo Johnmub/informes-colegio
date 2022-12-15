@@ -1,0 +1,21 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/fichas.css">
+
+<% var r = modulo.registro; %>
+
+<h1 class="titulo">Niveles<a href="/panel/niveles"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+<p class="descripcion">Estas viendo el nivel Id. <%= r.id %><%if(!r.estado){%>. <i style="color: darkred;">Este registro se encuentra en la papelera</i><%}%></p>
+
+<div class="ficha">
+  <table>
+    <tr><td>Código:</td><td><%= r.codigo %></td></tr>
+    <tr><td>Descripción:</td><td><%= r.descripcion %></td></tr>
+  </table>
+  <div class="controles">
+    <a class="modificar habilitado" href="/panel/niveles/<%= r.id %>/modificar" title="Editar"><i class="fa fa-wrench"></i></a>
+    <form action="/panel/niveles/<%= r.id %>/eliminar" method="POST">
+      <button class="eliminar habilitado" title="Eliminar"><i class="fa fa-trash"></i></button>
+    </form>
+    <span></span>
+    <a class="reporte habilitado" href="#" title="Imprimir reporte"><i class="fa fa-print"></i></a>
+  </div>
+</div>

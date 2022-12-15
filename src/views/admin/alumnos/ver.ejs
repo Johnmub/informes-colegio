@@ -1,0 +1,25 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/fichas.css">
+
+<% var r = modulo.registro; %>
+
+<h1 class="titulo">Alumno<a href="/panel/alumnos"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+<p class="descripcion">Estas viendo el alumno Id: <%= r.id %><%if(!r.estado){%>. <i style="color: darkred;">Este registro se encuentra en la papelera</i><%}%></p>
+
+<div class="ficha">
+  <table>
+    <tr><td>Nivel:</td><td <%if(!r.nivel || !r.nivel.estado){%>style="color:darkred;"<%}%>><%if(r.nivel){%><%= r.nivel.descripcion %><%}else{%>?<%}%></td></tr>
+    <tr><td>Nombre:</td><td><%= r.nombre %></td></tr>
+    <tr><td>Apellido:</td><td><%= r.apellido %></td></tr>
+    <tr><td>Edad:</td><td><%= r.edad %></td></tr>
+    <tr><td>Sexo:</td><td><%= r.sexo %></td></tr>
+    <tr><td>Representante:</td><td <%if(!r.representante || !r.representante.estado){%>style="color:darkred;"<%}%>><%if(r.representante){%><%= r.representante.cedula %><%}else{%>?<%}%></td></tr>
+  </table>
+  <div class="controles">
+    <a class="modificar habilitado" href="/panel/alumnos/<%= r.id %>/modificar" title="Modificar"><i class="fa fa-wrench"></i></a>
+    <form action="/panel/alumnos/<%= r.id %>/eliminar" method="POST">
+      <button class="eliminar habilitado" title="Eliminar"><i class="fa fa-trash"></i></button>
+    </form>
+    <span></span>
+    <a class="reporte habilitado" href="#" title="Imprimir reporte"><i class="fa fa-print"></i></a>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/tablas.css">
+
+<h1 class="titulo papelera">Publicaciones<a href="/panel/publicaciones"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+
+<% if(!modulo.registro.length) { %>
+<p class="descripcion">Esta papelera esta vacia.</p>
+<% } else { %>
+<p class="descripcion">Publicaciones que han sido eliminadas recientemente (<%= modulo.registro.length %> registros).
+</p>
+<% if(sesion && sesion.super) { %>
+<form id="vaciar" method="POST" action="/panel/publicaciones/papelera/vaciar">
+  <button class="vaciar" title="Todos los registros seran eliminados permanentemente"><i class="fa fa-trash"></i> Vaciar papelera</button>
+</form>
+<% } %>
+
+
+<div class="tabla">
+  <div class="busqueda">
+    <p>Busqueda</p>
+    <select>
+      <option value="todo" selected>Todo</option>
+      <option value="titulo">Titulo</option>
+      <option value="fecha">Fecha</option>
+      <option value="autor">Para</option>
+    </select>
+    <input type="text" name="busqueda" placeholder="Escriba su busqueda">
+    <input type="button" name="buscar" value="Buscar" onclick="realizarBusqueda()">
+  </div>
+  <div class="contenedor">
+    <table>
+      <thead>
+        <tr>
+          <th>Titulo</th>
+          <th>Fecha</th>
+          <th>Para</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% modulo.registro.forEach(function(r) { %>
+          <tr>
+            <td><%= r.titulo %></td>
+            <td><%= r.fecha %></td>
+            <td><%= r.para %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    </table>
+  </div>
+  <div class="controles">
+    <a class="ver" title="Ver"><i class="fa fa-eye"></i></a>
+    <form id="recuperar" method="POST">
+      <button class="recuperar" title="Restaurar"><i class="fa fa-refresh"></i></button>
+    </form>
+    <span></span>
+    <a class="reporte habilitado" title="Imprimir reporte" onclick="obtenerReporte('table')"><i class="fa fa-print"></i></a>
+  </div>
+</div>
+
+<div class="fila-detalles">
+  <ul>
+    <li><span>Id.:</span><span id="id"></span></li>
+    <li><span>Autor:</span><span id="autor"></span></li>
+  </ul>
+</div>
+
+
+<script type="text/javascript">
+  var modulo = <%-JSON.stringify(modulo)%>;
+</script>
+<script type="text/javascript" src="/js/lib/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/js/lib/pdfmake.min.js"></script>
+<script type="text/javascript" src="/js/lib/vfs_fonts.js"></script>
+<script type="text/javascript" src="/js/admin/tablas.js"></script>
+<% } %>

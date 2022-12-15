@@ -1,0 +1,71 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/tablas.css">
+
+<h1 class="titulo">Publicaciones<div><a href="/panel/publicaciones/papelera">Ver papelera <i class="fa fa-trash"></i></a></div></h1>
+
+<% if(!modulo.registro.length) { %>
+<p class="descripcion">Aún no hay publicaciones creadas.</p>
+<a class="boton agregar" href="/panel/publicaciones/agregar"><i class="fa fa-plus"></i> Crear una publicación</a>
+<% } else { %>
+<p class="descripcion">Publicaciones de la institución (<%= modulo.registro.length %> registros)</p>
+
+<div class="tabla">
+  <div class="busqueda">
+    <p>Busqueda</p>
+    <select>
+      <option value="todo" selected>Todo</option>
+      <option value="titulo">Titulo</option>
+      <option value="fecha">Fecha</option>
+      <option value="autor">Para</option>
+    </select>
+    <input type="text" name="busqueda" placeholder="Escriba su busqueda">
+    <input type="button" name="buscar" value="Buscar" onclick="realizarBusqueda()">
+  </div>
+  <div class="contenedor">
+    <table>
+      <thead>
+        <tr>
+          <th>Titulo</th>
+          <th>Fecha</th>
+          <th>Para</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% modulo.registro.forEach(function(r) { %>
+          <tr>
+            <td><%= r.titulo %></td>
+            <td><%= r.fecha %></td>
+            <td><%= r.para %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+  <div class="controles">
+    <a class="agregar habilitado" href="/panel/publicaciones/agregar" title="Agregar"><i class="fa fa-plus"></i></a>
+    <span></span>
+    <a class="ver" title="Ver"><i class="fa fa-eye"></i></a>
+    <a class="modificar" title="Editar"><i class="fa fa-wrench"></i></a>
+    <form id="eliminar" method="POST">
+      <button class="eliminar" title="Eliminar"><i class="fa fa-trash"></i></button>
+    </form>
+    <span></span>
+    <a class="reporte habilitado" title="Imprimir reporte" onclick="obtenerReporte('table')"><i class="fa fa-print"></i></a>
+  </div>
+</div>
+
+<div class="fila-detalles">
+  <ul>
+    <li><span>Id.:</span><span id="id"></span></li>
+    <li><span>Autor:</span><span id="autor"></span></li>
+  </ul>
+</div>
+
+
+<script type="text/javascript">
+  var modulo = <%-JSON.stringify(modulo)%>;
+</script>
+<script type="text/javascript" src="/js/lib/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/js/lib/pdfmake.min.js"></script>
+<script type="text/javascript" src="/js/lib/vfs_fonts.js"></script>
+<script type="text/javascript" src="/js/admin/tablas.js"></script>
+<% } %>

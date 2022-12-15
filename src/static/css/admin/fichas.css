@@ -1,0 +1,45 @@
+.contenido {
+  display: inline-flex;
+  flex-direction: column; }
+
+.ficha {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center; }
+
+.ficha .controles {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+.ficha .controles span { margin: 0 5px; }
+.ficha .controles span { width: 1px; height: 15px; background-color: silver; }
+.ficha .controles i { font-size: 1.2em !important; }
+.ficha .controles a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  margin: 0 5px;
+  color: #666;
+  cursor: default; }
+.ficha .controles button { background-color: transparent; border: none; font-size: 1em; color: #666; }
+.ficha .controles a.habilitado:hover,
+.ficha .controles button.habilitado:hover i { text-shadow: 0 0 1px; cursor: pointer; }
+.ficha .controles a.modificar.habilitado { color: darkblue; }
+.ficha .controles button.eliminar.habilitado { color: darkred; }
+.ficha .controles button.recuperar.habilitado { color: darkorange; }
+.ficha .controles a.reporte.habilitado { color: black; }
+
+table {
+  margin-bottom: 5px;
+  padding: 20px;
+  max-width: 70%;
+  font-size: .9em;
+  border-collapse: separate;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: default; }
+table tr td:first-child { font-weight: bold; }
+table td,
+table th { padding: 5px; vertical-align: top; text-align: justify; }

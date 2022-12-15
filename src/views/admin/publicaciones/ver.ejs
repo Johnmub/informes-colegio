@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/fichas.css">
+
+<% var r = modulo.registro; %>
+
+<h1 class="titulo">Publicaciones<a href="/panel/publicaciones"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+<p class="descripcion">Estas viendo la publicación Id. <%= r.id %><%if(!r.estado){%>. <i style="color: darkred;">Este registro se encuentra en la papelera</i><%}%></p>
+
+<div class="ficha">
+  <table>
+    <tr><td>Titulo:</td><td><%= r.titulo %></td></tr>
+    <tr><td>Cuerpo:</td><td><%= r.cuerpo %></td></tr>
+    <tr><td>Fecha:</td><td><%= r.fecha %></td></tr>
+    <tr><td>Para:</td><td><%= r.para %></td></tr>
+    <tr><td>Autor:</td><td><%= r.autor %></td></tr>
+  </table>
+  <div class="controles">
+    <a class="modificar habilitado" href="/panel/publicaciones/<%= r.id %>/modificar" title="Editar"><i class="fa fa-wrench"></i></a>
+    <form action="/panel/publicaciones/<%= r.id %>/eliminar" method="POST">
+      <button class="eliminar habilitado" title="Eliminar"><i class="fa fa-trash"></i></button>
+    </form>
+    <span></span>
+    <a class="reporte habilitado" href="#" title="Imprimir reporte"><i class="fa fa-print"></i></a>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<% if(mensaje.error.length || mensaje.info.length ) { %>
+<style type="text/css">
+  div.mensaje {
+    position: absolute;
+    width: 40%;
+    top: 40%;
+    left: 30%;
+    padding: 30px 20px;
+    text-align: center;
+    z-index: 5000;
+    cursor: default;
+    border: 2px solid #555555;
+    border-radius: 4px;
+    animation: mostrar 1s; }
+
+  @keyframes mostrar { from { opacity: 0; } to { opacity: 1; } }
+
+  div.mensaje.error   { background: rgba(201, 21, 21, 0.7); }
+  div.mensaje.info    { background: rgba(18, 18, 190, 0.7); }
+
+  div.mensaje p {
+    margin: 0;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 2px black; }
+</style>
+
+<div class="mensaje <%if(mensaje.error.length){%>error<%}else{%>info<%}%>">
+  <p>
+    <% if (mensaje.error.length) { %>
+      <%= mensaje.error %>
+    <% } else { %>
+      <%= mensaje.info %>
+    <% } %>
+  </p>
+</div>
+
+<script type="text/javascript">
+  var mensaje = document.querySelector('div.mensaje');
+
+  var IdInterval = setTimeout(function() {
+    if(mensaje)
+    {
+      mensaje.outerHTML = '';
+      delete mensaje;
+    }
+  }, 3000);
+  document.body.addEventListener( 'click', (e) => {
+    if(mensaje)
+    {
+      if(mensaje)
+      {
+        mensaje.outerHTML = '';
+        delete mensaje;
+        clearTimeout(IdInterval);
+      }
+    }
+  })
+  
+</script>
+<% } %>

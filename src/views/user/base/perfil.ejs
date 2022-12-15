@@ -1,0 +1,98 @@
+<h2 class="title-news">Mi Perfil</h2>
+<div class="divider-1"><span></span></div>
+
+<div class="perfil-user">
+    <div class="static-perfil">
+        <div class="photo"><img src="/img/user-profile.jpg" alt="<%= sesion.usuario %>"></div>
+        <div class="representados"><span>Representados: <i class="cant-represents">#<%= sesion.numb_representados %></i></span></div>
+    </div>
+
+    <div class="var-perfil">
+        <h2 class="title-perfil">Mis datos</h2>
+
+        <div class="datos-user">
+            <div><span class="name"> <%= sesion.usuario %> </span></div>
+            <div><span class="identidad"> <%= sesion.cedula %> </span></div>
+        </div>
+        <form class="form-container" action="/info-save" method="POST">
+            <div class="center">
+                <div class="telefono">
+                    <label for="telefono">Telefono:</label>
+                    <input class="input-form" id="listen-telefono" type="text" id="telefono" name="telefono" value="<%= sesion.telefono %>" disabled>
+                </div>
+                <div class="correo">
+                    <label for="correo">Correo:</label>
+                    <input class="input-form" type="email" id="correo" name="correo" value="<%= sesion.correo %>" disabled>
+                </div>
+    
+                <div class="direccion">
+                    <label for="direccion">Direccion:</label>
+                    <textarea class="input-form" name="direccion" id="direccion" disabled><%= sesion.direccion %></textarea>
+                </div>
+    
+                <div class="botones">
+                    <input id="save-edit" type="submit" value="Guardar">
+                    <button id="button-edit" class="button-edit">Editar</button>
+                </div>
+            </div>
+        </form>
+
+        <h2 class="title-perfil">Cambiar contraseña</h2>
+
+        <form class="form-container" action="/change-pass" method="POST">
+            <div class="center">
+                <div class="password hidden-div">
+                    <label for="password_old">Contraseña actual:</label>
+                    <input type="password" name="password_old" placeholder="Contraseña actual" id="password_old">
+                </div>
+                <div class="password hidden-div">
+                    <label for="password_new">Contraseña Nueva:</label>
+                    <input type="password" name="password_new" placeholder="Contraseña nueva" id="password_new">
+                </div>
+                <div class="password hidden-div">
+                    <label for="password_new_repeat">Confirmar contraseña:</label>
+                    <input type="password" name="password_new_repeat" placeholder="Confirmar contreaseña" id="password_new_repeat">
+                </div>
+                <div class="botones">
+                    <input id="save-pass" type="submit" value="Cambiar">
+                    <button id="button-password" class="button-edit">Editar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="message-flow" id="message-flow"></div>
+</div>
+
+<h2 class="title-news">Representados</h2>
+<div class="divider-1"><span></span></div>
+
+<!-- Representados -->
+<div class="container-news notHidden">
+    <% if(sesion.numb_representados > 0) { %>
+        <% sesion.alumnos.forEach( (alumno) => { %>
+            <div class="item-news" id="item-news">
+                <div class="icon-greend">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="description-alumno">
+                    <div class="info-">
+                        <h3 class="nombre"></i><%= alumno.nombre %></h3>
+                        <span class="nivel">Nivel: <i class="nivel-numb"><%= alumno.nivel %></i></span>
+                    </div>
+                    <div class="info-">
+                        <span class="sexo">Sexo: <%= alumno.sexo %></span>
+                        <span class="edad">Edad: <%= alumno.edad %> años</span>
+                    </div>
+                </div>
+            </div>
+        <%}) %>
+    <% } else {%>
+        <div class="null-message">
+            <span>No existen representados</span>
+        </div>
+    <%}%>
+</div>
+</div>
+
+<script src="/js/validate.js"></script>

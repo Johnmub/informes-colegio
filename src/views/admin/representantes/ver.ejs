@@ -1,0 +1,31 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/fichas.css">
+
+<% var r = modulo.registro; %>
+
+<h1 class="titulo">Representantes<a href="/panel/representantes"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+<p class="descripcion">Estas viendo el representante Cédula: <%= r.cedula %><%if(!r.estado){%>. <i style="color: darkred;">Este registro se encuentra en la papelera</i><%}%></p>
+
+<div class="ficha">
+  <table>
+    <tr><td>Cédula:</td><td><%= r.cedula %></td></tr>
+    <tr><td>Nombre:</td><td><%= r.nombre %></td></tr>
+    <tr><td>Apellido:</td><td><%= r.apellido %></td></tr>
+    <tr><td>Telefono:</td><td><%= r.telefono %></td></tr>
+    <tr><td>Dirección:</td><td><%= r.direccion %></td></tr>
+    <tr><td>Correo:</td><td><%= r.correo %></td></tr>
+  </table>
+  <div class="controles">
+    <%if(r.estado == true){%>
+      <a class="modificar habilitado" href="/panel/representantes/<%= r.id %>/modificar" title="Editar"><i class="fa fa-wrench"></i></a>
+      <form action="/panel/representantes/<%= r.id %>/eliminar" method="POST">
+        <button class="eliminar habilitado" title="Eliminar"><i class="fa fa-trash"></i></button>
+      </form>
+    <%} else {%>
+      <form action="/panel/representantes/<%= r.id %>/recuperar" method="POST">
+        <button class="recuperar habilitado" title="Restaurar"><i class="fa fa-refresh"></i></button>
+      </form>
+    <%}%>
+    <span></span>
+    <a class="reporte habilitado" href="#" title="Imprimir reporte"><i class="fa fa-print"></i></a>
+  </div>
+</div>

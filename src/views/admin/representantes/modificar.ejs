@@ -1,0 +1,39 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/formularios.css">
+
+<% var r = modulo.registro; %>
+
+<h1 class="titulo modificar">Representantes<a href="/panel/representantes"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+<p class="descripcion">Modificar el representante Cédula: <%= r.cedula %></p>
+
+<div class="formulario">
+  <form action="/panel/representantes/<%= r.id %>/modificar" method="POST">
+
+    <label for="listen-cedula">Identificación</label>
+    <div>
+      <select name="nacionalidad" disabled>
+        <option><%= r.cedula[0] %></option>
+      </select>
+      <input disabled type="text" name="cedula" id="listen-cedula" class="off-cedula" placeholder="Num. Identificación" value="<%= r.cedula.substring(1) %>" disabled>
+    </div>
+
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" name="nombre" placeholder="Primer nombre" value="<%= r.nombre %>">
+
+    <label for="apellido">Apellido</label>
+    <input type="text" id="apellido" name="apellido" placeholder="Primer apellido" value="<%= r.apellido %>">
+
+    <label for="listen-telefono">Teléfono</label>
+    <input type="text" name="telefono" id="listen-telefono" placeholder="Número de teléfono" value="<%= r.telefono %>">
+
+    <label for="direccion">Dirección</label>
+    <textarea name="direccion" id="direccion"  placeholder="Dirección de residencia"><%= r.direccion %></textarea>
+
+    <label for="correo">Correo</label>
+    <input type="email" name="correo" id="correo" placeholder="Dirección de correo electrónico" value="<%= r.correo %>">
+
+    <input type="submit" value="Modificar">
+  </form>
+  <div class="message-flow" id="message-flow"></div>
+</div>
+
+<script src="/js/validate.js"></script>

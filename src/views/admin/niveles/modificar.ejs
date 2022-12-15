@@ -1,0 +1,17 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/formularios.css">
+
+<% var r = modulo.registro; %>
+
+<h1 class="titulo modificar">Niveles<a href="/panel/niveles"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+<p class="descripcion">Modificar el nivel Id: <%= r.id %></p>
+
+<div class="formulario">
+  <form action="/panel/niveles/<%= r.id %>/modificar" class="nivel" method="POST">
+    <label for="codigo">Código</label>
+    <input type="text" id="codigo" name="codigo" placeholder="Código único" value="<%= r.codigo %>">
+    <div id="message-error"></div>
+    <input type="submit" value="Modificar">
+  </form>
+</div>
+
+<script src="/js/validate.js"></script>

@@ -1,0 +1,23 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/formularios.css">
+
+<h1 class="titulo agregar">Niveles<a href="/panel/niveles"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+<p class="descripcion">Agregar un nivel en la institución</p>
+
+<div class="formulario">
+  <form action="/panel/niveles/agregar" class="nivel" method="POST">
+
+    <label for="codigo">Código</label>
+    <input type="text" id="codigo" class="add-nivel" name="codigo" placeholder="Código único">
+
+    <label for="min_edad">Edad Mínima</label>
+    <input type="text" id="listen-edad" class="add-nivel min_edad" name="min_edad" placeholder="Edad Mínima">
+
+    <label for="max_edad">Edad Máxima</label>
+    <input type="text" id="listen-edad" class="add-nivel" name="max_edad" placeholder="Edad Máxima">
+    
+    <div id="message-error"></div>
+    <input type="submit" value="Agregar">
+  </form>
+</div>
+
+<script src="/js/validate.js"></script>

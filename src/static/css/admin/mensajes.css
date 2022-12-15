@@ -1,0 +1,26 @@
+.mensaje {
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 30%;
+  padding: 30px 20px;
+  text-align: center;
+  z-index: 5000;
+  cursor: default;
+  box-shadow: 0 0 10px #555;
+  animation: mostrar 2s;
+}
+
+@keyframes mostrar {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+.mensaje.error { background: rgba(150, 0, 0, .7); }
+.mensaje.info { background: rgba(0, 150, 0, .7); }
+
+.mensaje p {
+  margin: 0;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 2px black;
+}

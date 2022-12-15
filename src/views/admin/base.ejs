@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title><%= modulo.titulo %> &ndash; Sistema Administrativo Araguaney</title>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <link rel="stylesheet" type="text/css" href="/css/lib/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin/base.css">
+</head>
+<body>
+  <% include ../flash %>
+  <div class="contenedor">
+    <% include menu %>
+    <div class="contenido">
+      <%- include(modulo.contenido) %>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+	<title>Araguaney</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="/css/lib/animate.css">
+	<link rel="stylesheet" href="/css/lib/media-queries.css">
+	<link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/lib/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/font.css">
+	<link rel="stylesheet" href="/css/style.css">
+
+	<link rel="shortcut icon" href="/img/favicon.png">
+</head>
+<body>
+
+	<% include flash %>
+  <!-- Form acceder -->
+  <% if(!sesion) { %>
+  <section class="acceder-main" id="section-acces">
+    <div class="contenedor">
+      <div id="-login">
+        <h3>Acceder</h3>
+        <form action="/login" method="POST" class="form-check" id="form-login">
+          <div class="box">
+            <label for="email-user"><i class="fa fa-user"></i></label>
+            <input type="text" name="username" placeholder="Usuario" id="email-user">
+          </div>
+          <div class="box">
+            <label for="clave-user"><i class="fa fa-lock"></i></label>
+            <input type="password" name="password" placeholder="Contraseña" id="clave-user">
+					</div>
+					<div id="message-error"></div>
+          <div class="change-password" id="button-passclear"><span>¿Olvidaste tu contraseña?</span></div>
+          <input type="submit" value="Ingresar" id="submit-login">
+        </form>
+      </div>
+
+      <div id="-password">
+        <h3>Recuperar cuenta</h3>
+        <form action="/clave-return" method="POST" class="form-check" id="form-recuperate">
+          <div class="box margin-more">
+            <label for="email-recuperate"><i class="fa fa-envelope"></i></label>
+            <input type="email" id="email-recuperate" name="email" placeholder="Correo Electronico">
+					</div>
+					<div id="message-error"></div>
+          <div class="change-password" id="button-passclear"><span>Ingresar con otra cuenta</span></div>
+          <input id="submit-recuperate" type="submit" value="Recuperar">
+        </form>
+      </div>
+    </div>
+  </section>
+	<% } %>
+	
+	<!-- Top menu -->
+	<nav class="navbar navbar-dark fixed-top navbar-expand-md navbar-no-bg">
+		<div class="container">
+			<a class="navbar-brand scroll-link" href="#top-content">Araguaney</a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    	<span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item" id="Upbutton">
+          	<a class="nav-link scroll-link" href="#top-content"><i class="fa fa-arrow-up"></i></a>
+          </li>
+          <li class="nav-item">
+          	<a class="nav-link scroll-link" href="#section-2">Quienes Somos</a>
+          </li>
+          <li class="nav-item">
+          	<a class="nav-link scroll-link" href="#section-4">Contactanos</a>
+          </li>
+          <% if(!sesion) { %>
+          <li class="nav-item">
+						<button class="nav-link"  id="option-login">Acceder <i class="fa fa-sign-in"></i></button>
+          </li>
+          <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/panel">Panel <i class="fa fa-sign-in"></i></a>
+          </li>
+          <% } %>
+        </ul>
+			</div>
+    </div>
+	</nav>
+
+  <!-- Carousel - Agregar con nodejs items -->
+  <div class="top-content">
+ 		<div class="row no-gutters">
+ 			<div class="col">
+ 				<div id="carousel-example" class="carousel slide" data-ride="carousel">
+
+ 					<ol class="carousel-indicators">
+							<%if(!(publicaciones.length > 0)) {%>
+								<li data-target="#carousel-example" data-slide-to="0" class="active"></li>
+							<%} else {%>
+								<%for (const index in publicaciones) {%>
+									<li data-target="#carousel-example" data-slide-to="<%=index%>" class="active"></li>
+								<%}%>
+							<%}%>
+					</ol>
+
+ 					<div class="carousel-inner">
+						<%if(!(publicaciones.length > 0)) {%>
+							<div class="carousel-item active">
+								<img src="/img/backgrounds/1.jpg" class="d-block w-100" alt="img1">
+								<div class="carousel-caption">
+									<h1 class="wow fadeInLeftBig">Bienvenidos al servicio web el Araguaney</h1>
+									<div class="description wow fadeInUp">
+										<p>
+											Aqui encontraras todo referente a nosotros
+										</p>
+									</div>
+								</div>
+							</div>
+						<%} else {%>
+							<%publicaciones.forEach( (publicacion, index) => {%>
+								<div class="carousel-item <%if(!(index > 0)) {%>active<%}%>">
+									<img src="/img/backgrounds/1.jpg" class="d-block w-100" alt="img1">
+								<div class="carousel-caption">
+									<h1 class="wow fadeInLeftBig"><%=publicacion.titulo%></h1>
+								</div>
+							</div>
+							<%});%>
+						<%}%>
+
+					</div>
+
+					<a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+ 				</div>
+ 			</div>
+ 		</div>
+	</div>
+
+  <!-- Section 1 -->
+  <div class="section-1-container section-container">
+    <div class="container">
+      <div class="row">
+        <div class="col section-1 section-description wow fadeIn">
+          <h2>Misión / Visión</h2>
+          <div class="divider-1 wow fadeInUp"><span></span></div>
+        </div>
+      </div>
+     	<div class="row">
+      	<div class="col-md-4 section-1-box wow fadeInUp">
+      		<div class="row">
+      			<div class="col-md-4">
+            	<div class="section-1-box-icon">
+            		<i class="fa fa-flag"></i>
+            	</div>
+		    		</div>
+		    		<div class="col-md-8">
+	        		<h3>Misión</h3>
+	        		<p>Desarrollar una educación integral que conjugue la calidad educativa y la calidez humana acorde al proceso del niño en su educación inicial (maternal) y primera infancia (preescolar).</p>
+	        	</div>
+	        </div>
+      	</div>
+        <div class="col-md-4 section-1-box wow fadeInDown">
+	      	<div class="row">
+	    			<div class="col-md-4">
+	          	<div class="section-1-box-icon">
+	          		<i class="fa fa-road"></i>
+	          	</div>
+	        	</div>
+        		<div class="col-md-8">
+          		<h3>Visión</h3>
+          		<p>Se distinga por su calidad educativa y humana y que cuente con personal capacitado que impulse el desarrollo de las potencialidades de cada niño.</p>
+          	</div>
+          </div>
+        </div>
+        <div class="col-md-4 section-1-box wow fadeInUp">
+      		<div class="row">
+      			<div class="col-md-4">
+            	<div class="section-1-box-icon">
+            		<i class="fa fa-check"></i>
+            	</div>
+        		</div>
+            <div class="col-md-8">
+          		<h3>Valores</h3>
+          		<p><i class="fa fa-check"></i> Respeto<br><i class="fa fa-check"></i> Individualidad<br><i class="fa fa-check"></i> Solidaridad<br><i class="fa fa-check"></i> Tolerancia</p>
+          	</div>
+        	</div>
+        </div>
+			</div>
+     </div>
+    </div>
+
+	  <!-- Section 2 -->
+	  <div class="section-2-container section-container section-container-gray-bg">
+	  	<div class="container">
+	    	<div class="row">
+	      	<div class="col section-2 section-description wow fadeIn">
+						<h2>Quienes somos</h2>
+						<div class="divider-1 wow fadeInUp"><span></span></div>
+	        </div>
+	      </div>
+	    <div class="row">
+      	<div class="col section-2-box wow fadeInLeft">
+        	<h3>Historia</h3>
+        	<p class="medium-paragraph">
+        		Un dia de 1976, unos miembros de la comunidad preocupados por el bienestar educativo de los niños y niñas de Maracaibo, asi como la de sus propios hijos e hijas, decidieron establecer un pequeño kinder con el nombre más idóneo y emblematico que hoy en dia lleva "C.E.I. Araguaney" aprovechando que en el patio central existia un frondoso árbol Araguaney.
+        	</p>
+        	<p>
+        		Confiaron la dirección del mismo a la maestra Patricia González, y en el 2005 se transfiere la dirección a la maestra Julie Alvarado.</p>
+        	<p>
+        		Asi es como la historia de este centro educativo que cuando se eligió el nombre del arbol nacional sembró en una tierra bien abonada los signos, valores y principios de una naciente comunidad que se fundó en la pluralidad y en un claro sentido de servicio.
+        	</p>
+        </div>
+			</div>
+		</div>
+
+		<!-- Section 3 -->
+		<div class="section-3-container section-container">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-9 section-3-box wow fadeInLeft">
+						<div class="row-style">
+							<div class="col-style-3">
+								<div class="section-3-box-img">
+									<img src="/img/logo.png" alt="Foto" title="Dia de los padres">
+								</div>
+							</div>
+							<div class="col-style-9">
+								<div class="thumb">
+									<p>
+										<b class="frase">"Educar con amor es sembrar en terreno fértil."</b>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Section 4 -->
+  <div class="section-4-container section-container section-container-image-bg">
+    <div class="container">
+    	<div class="row">
+	      <div class="col section-4 section-description wow fadeInLeftBig">
+	      	<h2>Contacto</h2>
+	        <p>
+	        	<span>Direccion:</span> Avenida 10 Calle 64 N° 64-09, La Estrella (3,89 km) 4001 Maracaibo<br>
+						<span>Telefonos:</span> (0261) 742-5838 / (0261) 741-4381. <br>
+						<span>Correo:</span> araguaneycolegio@gmail.com
+					</p>
+					<section class="redes-sociales">
+						<h2>Redes Sociales</h2>
+						<div class="contenedor">
+							<a href="https://es-la.facebook.com/colegio.araguaney" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a>
+							<a href="https://twitter.com/ceiaraguaney?lang=es" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a>
+							<a href="https://www.instagram.com/ceiaraguaney/" target="_blank" class="instagram"><i class="fa fa-instagram"></i></a>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <!-- Footer -->
+  <footer class="footer-container">
+    <div class="container">
+    	<div class="row">
+        <div class="col">
+        	&copy; Araguaney 2019
+        </div>
+      </div>
+    </div>
+	</footer>
+
+	<!-- Help Button -->
+	<div class="help-main">
+		<a href="/pdf/Ayuda_representante.pdf" target="_blank" class="help-button"><i class="fa fa-question-circle"></i></a>
+	</div>
+
+  <!-- Javascript -->
+	<script src="/js/lib/jquery-3.3.1.min.js"></script>
+	<script src="/js/lib/jquery-migrate-3.0.0.min.js"></script>
+	<script src="/js/lib/popper.min.js"></script>
+	<script src="/js/lib/bootstrap.min.js"></script>
+  <script src="/js/lib/jquery.backstretch.min.js"></script>
+  <script src="/js/lib/wow.min.js"></script>
+  <script src="/js/lib/waypoints.min.js"></script>
+	<script src="/js/lib/scripts.js"></script>
+  <% if(!sesion) { %>
+		<script src="/js/main.js"></script>
+		<script src="/js/validate.js"></script>
+  <% } %>
+</body>
+</html>

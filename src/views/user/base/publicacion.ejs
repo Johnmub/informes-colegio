@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="/css/user/publicacion.css">
+
+<div class="publicacion">
+    <div class="titulo">
+        <h2 class=""><%= sesion.publicacion.titulo %></h2>
+    </div>
+    <div class="imagen">
+        <img src="/img/galeria/2.jpg" alt="<%= sesion.publicacion.titulo %>">
+    </div>
+    <div class="cuerpo">
+        <div class="contenido">
+            <%- sesion.publicacion.cuerpo %>
+        </div>
+    </div>
+    <div class="leyenda">
+        <span><%= sesion.publicacion.fecha %></span>
+        <span>Author <i class="author"><%= sesion.publicacion.autor %></i></span>
+    </div>
+</div>

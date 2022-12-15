@@ -1,0 +1,97 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/tablas.css">
+
+<h1 class="titulo">Usuarios</h1>
+<p class="descripcion">Usuarios registrados en el sistema (<%= modulo.registro.length %> registros)</p>
+<% if(!modulo.registro.find(r => r.representante)) { %>
+<p class="descripcion" style="align-self: center;">No hay usuarios de representantes aún.</p>
+<% } else { %>
+<div class="tabla">
+  <h1>Representantes</h1>
+  <div class="busqueda">
+    <p>Busqueda</p>
+    <select>
+      <option value="todo" selected>Todo</option>
+      <option value="cedula">Cédula</option>
+      <option value="nombre">Nombre</option>
+      <option value="apellido">Apellido</option>
+    </select>
+    <input type="text" name="busqueda" placeholder="Escriba su busqueda">
+    <input type="button" name="buscar" value="Buscar" onclick="realizarBusqueda()">
+  </div>
+  <div class="contenedor">
+    <table>
+      <thead>
+        <tr>
+          <th>Cédula</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+         <% modulo.registro.forEach(function(r) { %>
+         <% if(r.representante) { %>
+          <tr>
+            <td><%= r.representante.cedula %></td>
+            <td><%= r.representante.nombre + ' ' + r.representante.apellido %></td>
+          </tr>
+        <% } %>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+  <div class="controles">
+    <form id="eliminar" method="POST">
+      <button class="eliminar" title="Eliminar"><i class="fa fa-trash"></i></button>
+    </form>
+    <span></span>
+    <a class="reporte habilitado" title="Imprimir reporte" onclick="obtenerReporte('table')"><i class="fa fa-print"></i></a>
+  </div>
+</div>
+<% } %>
+
+<div class="tabla" style="margin-top: 20px;">
+  <h1>Administradores</h1>
+  <div class="contenedor">
+    <table class="admin">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Superior</th>
+        </tr>
+      </thead>
+      <tbody>
+         <% modulo.registro.forEach(function(r) { %>
+         <% if(!r.representante) { %>
+          <tr>
+            <td><%= r.usuario %></td>
+            <% if(r.super) {%>
+            <td style="color:green; text-align: center;"><i class="fa fa-check"></i>SI</td>
+            <%}else{%>
+            <td></td>
+            <%}%>
+          </tr>
+        <% } %>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+  <div class="controles">
+    <% if(sesion && sesion.super) { %>
+    <a class="agregar habilitado" href="/panel/usuarios/agregar" title="Agregar"><i class="fa fa-plus"></i></a>
+    <span></span>
+    <form id="eliminar-admin" method="POST">
+      <button class="eliminar admin" title="Eliminar"><i class="fa fa-trash"></i></button>
+    </form>
+    <span></span>
+    <% } %>
+    <a class="reporte habilitado" title="Imprimir reporte" onclick="obtenerReporte('table.admin')"><i class="fa fa-print"></i></a>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var modulo = <%-JSON.stringify( modulo)%>;
+  var sesion = <%-JSON.stringify(sesion)%>;
+</script>
+<script type="text/javascript" src="/js/lib/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/js/lib/pdfmake.min.js"></script>
+<script type="text/javascript" src="/js/lib/vfs_fonts.js"></script>
+<script type="text/javascript" src="/js/admin/tablas.js"></script>

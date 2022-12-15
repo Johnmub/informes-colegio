@@ -1,0 +1,72 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/tablas.css">
+
+<h1 class="titulo papelera">Representantes<a href="/panel/representantes"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+<% if(!modulo.registro.length) { %>
+<p class="descripcion">Esta papelera esta vacia.</p>
+<% } else { %>
+<p class="descripcion">Representantes que han sido eliminados recientemente (<%= modulo.registro.length %> registros)</p>
+<% if(sesion && sesion.super) { %>
+<form id="vaciar" method="POST" action="/panel/representantes/papelera/vaciar">
+  <button class="vaciar" title="Todos los registros seran eliminados permanentemente"><i class="fa fa-trash"></i> Vaciar papelera</button>
+</form>
+<% } %>
+
+<div class="tabla">
+  <div class="busqueda">
+    <p>Busqueda</p>
+    <select>
+      <option value="todo" selected>Todo</option>
+      <option value="cedula">Cédula</option>
+      <option value="nombre">Nombre</option>
+      <option value="apellido">Apellido</option>
+      <option value="telefono">Teléfono</option>
+      <option value="direccion">Dirección</option>
+    </select>
+    <input type="text" name="busqueda" placeholder="Escriba su busqueda">
+    <input type="button" name="buscar" value="Buscar" onclick="realizarBusqueda()">
+  </div>
+  <div class="contenedor">
+    <table>
+      <thead>
+        <tr>
+          <th>Cédula</th>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+          <th>Dirección</th>
+        </tr>
+      </thead>
+      <tbody>
+         <% modulo.registro.forEach(function(r) { %>
+          <tr>
+            <td><%= r.cedula %></td>
+            <td><%= r.nombre + ' ' + r.apellido %></td>
+            <td><%= r.telefono %></td>
+            <td><%= r.direccion %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+  <div class="controles">
+    <a class="ver" title="Ver"><i class="fa fa-eye"></i></a>
+    <form id="recuperar" method="POST">
+      <button class="recuperar" title="Restaurar"><i class="fa fa-refresh"></i></button>
+    </form>
+    <span></span>
+    <a class="reporte habilitado" title="Imprimir reporte" onclick="obtenerReporte('table')"><i class="fa fa-print"></i></a>
+  </div>
+</div>
+
+<div class="fila-detalles">
+  <p class="titulo"><span id="nombre"></span></p>
+  <ul>
+    <li><span>Cédula:</span><span id="cedula"></span></li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  var modulo = <%-JSON.stringify(modulo)%>;
+</script>
+<script type="text/javascript" src="/js/admin/tablas.js"></script>
+
+<% } %>

@@ -1,0 +1,30 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/formularios.css">
+
+<h1 class="titulo">Editar informacion<a href="/panel/publicaciones"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+
+<div class="formulario">
+    <h2 class="titulo">Modificar datos</h2>
+    <form action="/panel-info" method="POST">
+        <label for="correo">Correo:</label>
+        <input class="input-form" type="email" id="correo" name="correo" value="<%= sesion.correo %>">
+        <input id="save-pass" type="submit" value="Guardar">
+    </form>
+
+    <h2 class="titulo">Cambiar contraseña</h2>
+    <form action="/panel-pass" method="POST">
+        <label for="password_old">Contraseña actual:</label>
+        <input type="password" name="password_old" placeholder="Contraseña actual" id="password_old">
+        
+        <label for="password_new">Contraseña Nueva:</label>
+        <input type="password" name="password_new" placeholder="Contraseña nueva" id="password_new">
+        
+        <label for="password_new_repeat">Confirmar contraseña:</label>
+        <input type="password" name="password_new_repeat" placeholder="Confirmar contreaseña" id="password_new_repeat">
+
+        <input id="save-pass" type="submit" value="Cambiar">
+
+    </form>
+    <div class="message-flow" id="message-flow"></div>  
+</div>
+
+<script src="/js/validate.js"></script>

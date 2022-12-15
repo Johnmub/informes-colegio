@@ -1,0 +1,45 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/formularios.css">
+
+<h1 class="titulo agregar">Alumnos<a href="/panel/alumnos"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+<p class="descripcion">Registrar un alumno en la institución</p>
+
+<div class="formulario">
+  <form action="/panel/alumnos/agregar" method="POST">
+
+    <label for="nivel">Nivel</label>
+    <select id="nivel" name="nivel">
+      <% for(const i in modulo.nivel) { %>
+        <option value="<%= modulo.nivel[i].id %>" data_position="<%=i%>"><%= modulo.nivel[i].descripcion + ' (' + modulo.nivel[i].codigo + ')'%></option>
+      <% } %>
+    </select>
+
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" name="nombre" placeholder="Primer nombre">
+
+    <label for="apellido">Apellido</label>
+    <input type="text" id="apellido" name="apellido" placeholder="Primer apellido">
+
+    <label for="listen-edad">Edad</label>
+    <input type="text" id="listen-edad" name="edad" placeholder="Edad">
+
+    <label for="sexo">Sexo</label>
+    <select id="sexo" name="sexo">
+      <option>Masculino</option>
+      <option>Femenino</option>
+    </select>
+
+    <label for="representante">Representante</label>
+    <select id="representante" name="representante">
+      <% for(const i in modulo.representante) { %>
+        <option value="<%= modulo.representante[i].id %>"><%=modulo.representante[i].cedula %></option>
+      <% } %>
+    </select>
+    <input type="submit" value="Agregar">
+  </form>
+  <div class="message-flow" id="message-flow"></div>
+</div>
+
+<script type="text/javascript">
+  var modulo = <%-JSON.stringify(modulo)%>;
+</script>
+<script src="/js/validate.js"></script>

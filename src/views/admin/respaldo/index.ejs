@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/formularios.css">
+<h1 class="titulo">Copias de Seguridad</h1>
+<br><br>
+<div class="center">
+    <form action="/copia" method="POST">
+        <label class="tit" for="clave-copiar">Crear Copia de Seguridad</label>
+        <input type="password" name="password_copia" placeholder="Ingresa tu contraseña" id="clave-copiar">
+        <div id="message-error"></div>
+        <input class="btnresp" type="submit" id="respaldo" name="respaldo" value="Crear">
+    </form>
+
+    <hr class="hrsep">
+    
+    <form action="/restaurar" method="POST">
+        <label class="tit" for="clave-restaurar">Restaurar Copia de Seguridad</label><br>
+        <input type="password" name="password_restaurar" placeholder="Ingresa tu contraseña" id="clave-restaurar">
+        <div id="message-error"></div>
+        <select name="respaldo" id="selresp">
+            <% if(modulo.copias.length > 0) { %>
+                <option value="-1">--Seleccione una copia--</option>
+                <%modulo.copias.forEach( (copia, index) => {%>
+                    <option value="<%=index%>"><%=copia%></option>
+                <%});%>
+            <%} else {%>
+                <option value="-1">--No existen copias--</option>
+            <%}%>
+        </select>
+        <input class="btnresp" type="submit" value="Restaurar">
+    </form>
+</div>
+
+<script src="/js/validate.js"></script>

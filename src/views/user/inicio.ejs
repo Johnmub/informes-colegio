@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>Araguaney - <%= modulo.titulo %></title>
+
+        <link rel="stylesheet" href="/css/font.css">
+        <link rel="stylesheet" href="/css/user/style-cliente.css">
+        <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/lib/normalize.css">
+
+        <link rel="shortcut icon" href="/img/favicon.png">
+    </head>
+<body id="DomPage">
+
+    <% include ../flash %>
+    <!-- Top menu -->
+    <% include base/menu %>
+
+    <section class="main">
+
+        <div class="section-news">
+            <%- include(modulo.contenido)%>
+        </div>
+        
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-main">
+        <div class="contenedor">
+            &copy; Araguaney 2019
+        </div>
+    </footer>
+
+    <!-- Help Button -->
+    <div class="help-main">
+        <a href="/pdf/Ayuda_representante.pdf" target="_blank" class="help-button"><i class="fa fa-question-circle"></i></a>
+    </div>  
+
+    <!-- JS -->
+    <script src="/js/user/configuracion.js"></script>
+</body>
+</html>

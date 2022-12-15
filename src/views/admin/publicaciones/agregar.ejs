@@ -1,0 +1,62 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/publicaciones.css">
+
+<script type="text/javascript" src="/js/lib/tinymce/tinymce.min.js"></script>
+<script>tinymce.init({selector:'textarea'});</script>
+
+<h1 class="titulo agregar">Publicaciones<a href="/panel/publicaciones"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+<p class="descripcion">Agregar una publicación</p>
+
+<div class="form-agregar">
+  <form action="/panel/publicaciones/agregar" method="POST">
+    <div>
+        <label for="titulo_publicacion">Titulo</label>
+        <input type="text" id="titulo_publicacion" name="titulo" placeholder="Titulo de la publicacion">
+    </div>
+
+    <div>
+      <label for="para-type">Para</label>
+      <div class="options-para">
+        <select name="para_type" id="para-type">
+          <%if(modulo.niveles != null && modulo.niveles.length > 0) {%>
+            <option value="todos">Todos</option>
+            <option value="nivel">Nivel</option>
+          <%} else {%>
+            <option value="">--No hay niveles disponibles--</option>
+          <%}%>
+          <%if(modulo.alumnos != null && modulo.alumnos.length > 0) {%>
+            <option value="alumno">Alumno</option>
+          <%}%>
+        </select>
+        
+        <%if(modulo.niveles != null && modulo.niveles.length > 0) {%>
+          <select name="select_nivel" id="select-nivel">
+              <% modulo.niveles.forEach( (nivel) => {%>
+                <option value="<%=nivel.id%>"><%= nivel.codigo%></option>
+              <%})%>
+          </select>
+        <%}%>
+        <%if(modulo.alumnos != null && modulo.alumnos.length > 0) {%>
+          <select name="select_alumno" id="select-alumno">
+          </select>
+        <%}%>
+      </div>
+    </div>
+
+    <div>
+        <label for="cuerpo_publicacion">Mensaje</label>
+        <textarea name="cuerpo" id="cuerpo_publicacion" placeholder="Cuerpo o mensaje" rows="18" cols="80" minlength="100" maxlength="800"></textarea>
+    </div>
+
+    <div class="botones">
+        <input type="submit" id="btn-Enviar"  value="Publicar">
+        <input type="reset" id="btn-Cancel"  value="Limpiar">
+    </div>
+  </form>
+  <div class="message-flow" id="message-flow"></div>
+</div>
+
+<script type="text/javascript">
+  var modulo = <% JSON%>;
+</script>
+<script src="/js/admin/publicacion.js"></script>
+<script src="/js/validate.js"></script>

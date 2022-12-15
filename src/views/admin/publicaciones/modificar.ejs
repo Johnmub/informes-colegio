@@ -1,0 +1,30 @@
+<link rel="stylesheet" type="text/css" href="/css/admin/publicaciones.css">
+
+<script type="text/javascript" src="/js/lib/tinymce/tinymce.min.js"></script>
+<script>tinymce.init({selector:'textarea'});</script>
+
+<% var r = modulo.registro; %>
+
+<h1 class="titulo modificar">Publicaciones<a href="/panel/publicaciones"><i class="fa fa-arrow-left"></i> Volver</a></h1>
+<p class="descripcion">Modificar la publicación Id: <%= r.id %></p>
+
+<div class="form-agregar">
+  <form action="/panel/publicaciones/<%=r.id%>/modificar" method="POST">
+    <div>
+        <label for="titulo_publicacion">Titulo</label>
+        <input type="text" id="titulo_publicacion" name="titulo" placeholder="Titulo" value="<%= modulo.registro.titulo %>" >
+    </div>
+
+    <div>
+        <label for="cuerpo_publicacion">Mensaje</label>
+        <textarea name="cuerpo" id="cuerpo_publicacion" placeholder="Cuerpo o mensaje" rows="18" cols="80" minlength="100" maxlength="800"><%- modulo.registro.cuerpo %></textarea>
+    </div>
+
+    <div class="botones">
+      <input type="submit" value="Modificar">
+    </div>
+  </form>
+  <div class="message-flow" id="message-flow"></div>
+</div>
+
+<script src="/js/validate.js"></script>

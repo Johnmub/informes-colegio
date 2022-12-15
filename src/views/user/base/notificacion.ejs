@@ -1,0 +1,30 @@
+<h2 class="title-news">Tus notificaciones</h2>
+<div class="divider-1"><span></span></div>
+
+<div class="container-news yesHidden" href="#">
+    <% sesion.notificaciones.forEach( ( notificacion ) =>
+    { %>
+        <a class="item-news <% if(notificacion.leido) {%>yes-view<%} %>" href="/publicacion/<%= notificacion.publicacion_id %>/<%= notificacion.id %>">
+            <div class="photo-new">
+                <img src="/img/logo.png" alt="Miniatura Noticia">
+            </div>
+            <div class="description-new">
+                <h3 class="title-new"><i class="fa fa-envelope <% 
+                    if(notificacion.leido) 
+                    {%>
+                        icon-check-on 
+                    <%} else {%>
+                        icon-check
+                    <%} %>"></i><%= notificacion.titulo %></h3>
+                <div class="fecha-new">
+                    <p>Fecha: <%= notificacion.fecha %></p>
+                </div>
+            </div>
+        </a>
+    <% }); %>
+
+    <div class="null-message">
+        <span>No hay mas notificaciones</span>
+    </div>
+
+</div>
